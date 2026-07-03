@@ -159,7 +159,8 @@
     .navlinks.open{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;
       background:var(--cream);padding:20px 24px;gap:20px;border-bottom:1px solid var(--line);text-align:center}
     .hero{background-attachment:scroll;min-height:82vh}
-    .about .g,.menu-grid,.info-g,.contact-g{grid-template-columns:1fr;gap:34px}
+    .about .g,.info-g,.contact-g{grid-template-columns:1fr;gap:34px}
+    .menu-grid{columns:1;column-gap:0;margin-top:38px}
     .about .imgwrap::after{display:none}
     section{padding:70px 0}
     .callbar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:60;gap:0;
@@ -531,12 +532,20 @@
   const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 24);
   onScroll(); addEventListener('scroll', onScroll, {passive:true});
 
-  // gentle fade-up as sections come into view
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.center, .about .g > *, .menu-grid, .info-g, .contact-g')
-    .forEach(el => { el.classList.add('reveal'); io.observe(el); });
+  // gentle fade-up as sections come into view.
+  // NOTE: never animate the tall menu block — a very tall element can fail to
+  // trigger the observer and stay hidden. And always have a safety net so nothing
+  // can get stuck invisible.
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.05, rootMargin:'0px 0px -30px 0px'});
+    document.querySelectorAll('.center, .about .g > *, .info-g, .contact-g')
+      .forEach(el => { el.classList.add('reveal'); io.observe(el); });
+    // safety: reveal anything still hidden after 2.5s no matter what
+    setTimeout(() => document.querySelectorAll('.reveal:not(.in)')
+      .forEach(el => el.classList.add('in')), 2500);
+  }
 </script>
 </body>
 </html>
