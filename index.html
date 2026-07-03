@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pizzeria San Remo · Italienisches Restaurant in Neu-Isenburg</title>
+<meta name="description" content="Pizzeria San Remo in Neu-Isenburg – authentische italienische Küche, Pizza, Pasta und mehr. Lieferung & Abholung. Benvenuti da San Remo!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Marcellus&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f7f1e7; --paper:#fffdf7; --ink:#2a251d; --muted:#7a7062;
+    --green:#9e2a22; --green-2:#c23a2c; --gold:#b8923f; --gold-lt:#caa75f; --red:#8c2119;
+    --line:#e7dcc7; --shadow:0 18px 50px -18px rgba(70,22,16,.30);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);
+       font:16px/1.7 Inter,-apple-system,Segoe UI,Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.08}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:Marcellus,serif;font-size:13px;letter-spacing:.34em;text-transform:uppercase;
+           color:var(--gold);font-weight:400}
+  h2{font-size:clamp(34px,5.2vw,54px);color:var(--green);margin:.18em 0 0;letter-spacing:.005em}
+  h2::after{content:"";display:block;width:58px;height:2px;background:var(--gold);
+            border-radius:2px;margin:22px 0 26px}
+  .lead{color:var(--muted);font-size:18px;font-weight:400}
+
+  .btn{display:inline-block;padding:15px 34px;border-radius:2px;font-weight:600;font-size:13px;
+       letter-spacing:.13em;text-transform:uppercase;transition:.25s;cursor:pointer;
+       border:1px solid transparent}
+  .btn-gold{background:var(--gold);color:#fff;box-shadow:0 10px 24px -12px rgba(184,146,63,.9)}
+  .btn-gold:hover{background:var(--green);box-shadow:0 12px 26px -12px rgba(120,30,22,.6);transform:translateY(-2px)}
+  .btn-ghost{border-color:rgba(255,255,255,.7);color:#fff}
+  .btn-ghost:hover{background:#fff;color:var(--green);transform:translateY(-2px)}
+
+  /* ---------- top bar + nav ---------- */
+  .topbar{background:var(--green);color:#e9ddc3;font-size:13px}
+  .topbar .tb{display:flex;align-items:center;justify-content:center;gap:30px;height:40px;
+              letter-spacing:.02em}
+  .topbar .tb a:hover,.topbar .tb .hl{color:var(--gold-lt)}
+  header{position:sticky;top:0;z-index:50;background:rgba(247,241,231,.85);
+         backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:.3s}
+  header.scrolled{background:rgba(247,241,231,.97);border-bottom-color:var(--line);
+                  box-shadow:0 8px 30px -20px rgba(70,22,16,.5)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .brand{font-family:Marcellus,serif;font-size:27px;letter-spacing:.06em;color:var(--green);
+         display:flex;align-items:baseline;gap:9px}
+  .brand small{font-family:Inter;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;
+               color:var(--gold);font-weight:600}
+  .navlinks{display:flex;gap:34px;align-items:center;font-size:13px;font-weight:500;
+            letter-spacing:.06em;text-transform:uppercase}
+  .navlinks a{position:relative;padding:4px 0;color:var(--ink)}
+  .navlinks a:not(.call)::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;
+                                background:var(--gold);transition:.25s}
+  .navlinks a:not(.call):hover::after{width:100%}
+  .navlinks .call{padding:11px 22px;background:var(--gold);color:#fff;border-radius:2px}
+  .navlinks .call:hover{background:var(--green)}
+  .burger{display:none;font-size:26px;color:var(--green);background:none;border:0;cursor:pointer}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:90vh;display:flex;align-items:center;text-align:center;color:#fff;
+        background:linear-gradient(rgba(36,10,8,.52),rgba(24,7,6,.80)),
+        url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1700&q=80') center/cover fixed}
+  .hero .wrap{width:100%}
+  .hero .eyebrow{color:var(--gold-lt)}
+  .hero .rule{width:70px;height:1px;background:var(--gold);margin:24px auto;opacity:.9}
+  .hero h1{font-size:clamp(50px,9vw,100px);font-style:italic;font-weight:600;
+           text-shadow:0 4px 30px rgba(0,0,0,.3);line-height:1}
+  .hero p{font-size:clamp(16px,2.3vw,21px);max-width:600px;margin:22px auto 34px;color:#efe7d5;font-weight:400}
+  .hero .cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .hero .scroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:#e9ddc3;
+                font-size:22px;animation:bob 2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+  section{padding:110px 0}
+  .center{text-align:center;max-width:680px;margin:0 auto}
+  .center h2::after{margin-left:auto;margin-right:auto}
+
+  /* ---------- about ---------- */
+  .about{background:var(--paper)}
+  .about .g{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+  .about .imgwrap{position:relative}
+  .about img{width:100%;height:100%;min-height:400px;object-fit:cover;border-radius:3px;box-shadow:var(--shadow)}
+  .about .imgwrap::after{content:"";position:absolute;inset:14px -14px -14px 14px;
+        border:1px solid var(--gold);border-radius:3px;z-index:-1}
+  .pill-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  .pill{display:flex;align-items:center;gap:8px;background:var(--cream);border:1px solid var(--line);
+        padding:9px 16px;border-radius:999px;font-size:13.5px;font-weight:500;color:var(--ink)}
+
+  /* ---------- menu ---------- */
+  .menu-grid{columns:2;column-gap:70px;margin-top:52px}
+  .cat{break-inside:avoid;margin-bottom:40px}
+  .cat h3{font-size:26px;color:var(--green);display:flex;align-items:center;gap:12px;
+          padding-bottom:11px;border-bottom:1px solid var(--line);margin-bottom:6px;position:relative}
+  .cat h3::after{content:"";position:absolute;left:0;bottom:-1px;width:44px;height:2px;background:var(--gold)}
+  .cat h3 .ic{font-size:20px}
+  .cat .sub{color:var(--muted);font-size:12.5px;font-style:italic;margin:6px 0 10px}
+  .item{display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+        padding:10px 0;border-bottom:1px solid #efe7d6;transition:.2s}
+  .item:last-child{border-bottom:0}
+  .item:hover{padding-left:6px}
+  .item .nm{font-weight:500}
+  .item .no{color:var(--gold);font-size:10.5px;font-weight:700;margin-right:8px;letter-spacing:.05em;
+            font-family:Inter}
+  .item .desc{display:block;color:var(--muted);font-size:12.5px;font-weight:400;margin-top:2px;padding-right:10px;line-height:1.5}
+  .item .pr{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--red);white-space:nowrap}
+  .menu-note{text-align:center;margin-top:42px;color:var(--muted);font-size:14px;font-style:italic}
+
+  /* ---------- info strip (hours + delivery) ---------- */
+  .info{background:linear-gradient(#7d1c15,#631610);color:#f5ecdb;position:relative}
+  .info h2{color:#fff}
+  .info .eyebrow{color:#f6d98e}
+  .info-g{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:8px}
+  .card{background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.2);
+        border-radius:4px;padding:36px 38px}
+  .card h3{font-size:27px;color:#fff;margin-bottom:20px}
+  .hrs{width:100%;border-collapse:collapse;font-size:15px}
+  .hrs td{padding:11px 0;border-bottom:1px solid rgba(255,255,255,.16);color:#fbf4e7}
+  .hrs tr:last-child td{border-bottom:0}
+  .hrs td:last-child{text-align:right;color:#ffffff;font-weight:700}
+  .hrs .closed td:last-child{color:#ffcfc7}
+  .deliv{list-style:none}
+  .deliv li{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.16);color:#fbf4e7}
+  .deliv li:last-child{border-bottom:0}
+  .deliv li b{color:#f6d98e;min-width:150px;display:inline-block;font-weight:700}
+
+  /* ---------- contact ---------- */
+  .contact-g{display:grid;grid-template-columns:1fr 1.25fr;gap:52px;margin-top:8px;align-items:stretch}
+  .contact-card{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:38px;box-shadow:var(--shadow)}
+  .contact-card .row{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+  .contact-card .row:last-child{border:0}
+  .contact-card .ic{font-size:19px;color:var(--gold)}
+  .contact-card b{font-family:Marcellus,serif;font-weight:400;letter-spacing:.04em;color:var(--green)}
+  .contact-card a:hover{color:var(--gold)}
+  .map{border-radius:4px;overflow:hidden;min-height:400px;box-shadow:var(--shadow);border:1px solid var(--line)}
+  .map iframe{width:100%;height:100%;min-height:400px;border:0;display:block;filter:grayscale(.2)}
+
+  footer{background:#3a1210;color:#e0c9a0;text-align:center;padding:56px 0 40px;font-size:14px}
+  footer .brand{justify-content:center;color:#fff;margin-bottom:10px}
+  footer a:hover{color:var(--gold-lt)}
+  .foot-links{margin:16px 0;display:flex;gap:26px;justify-content:center;flex-wrap:wrap;
+              text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  .callbar{display:none}
+
+  @media(max-width:860px){
+    .topbar{display:none}
+    .navlinks{display:none}
+    .burger{display:block}
+    nav{height:64px}
+    .navlinks.open{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;
+      background:var(--cream);padding:20px 24px;gap:20px;border-bottom:1px solid var(--line);text-align:center}
+    .hero{background-attachment:scroll;min-height:82vh}
+    .about .g,.menu-grid,.info-g,.contact-g{grid-template-columns:1fr;gap:34px}
+    .about .imgwrap::after{display:none}
+    section{padding:70px 0}
+    .callbar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:60;gap:0;
+             box-shadow:0 -6px 24px -12px rgba(0,0,0,.4)}
+    .callbar a{flex:1;text-align:center;padding:15px;font-weight:600;color:#fff;letter-spacing:.06em}
+    .callbar .c1{background:var(--green)} .callbar .c2{background:var(--gold)}
+    body{padding-bottom:52px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap tb">
+    <span>📍 Bahnhofstraße 31, Neu-Isenburg</span>
+    <span>🕒 Di–So geöffnet · Montag Ruhetag</span>
+    <a class="hl" href="tel:+49610221919">☎ +49 6102 21919</a>
+  </div>
+</div>
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#top">San Remo <small>Neu-Isenburg</small></a>
+    <div class="navlinks" id="nav">
+      <a href="#speisekarte">Speisekarte</a>
+      <a href="#zeiten">Öffnungszeiten</a>
+      <a href="#lieferung">Lieferung</a>
+      <a href="#kontakt">Kontakt</a>
+      <a class="call" href="tel:+49610221919">☎ Bestellen</a>
+    </div>
+    <button class="burger" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="eyebrow">Ristorante · Pizzeria</div>
+    <div class="rule"></div>
+    <h1>Benvenuti da San&nbsp;Remo</h1>
+    <p>Authentische italienische Küche im Herzen von Neu-Isenburg —
+       Eleganz, Genuss und exzellenter Service.</p>
+    <div class="cta">
+      <a class="btn btn-gold" href="#speisekarte">Speisekarte ansehen</a>
+      <a class="btn btn-ghost" href="tel:+49610221919">☎ Jetzt bestellen</a>
+    </div>
+  </div>
+  <a class="scroll" href="#ueber" aria-label="Nach unten scrollen">▾</a>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="ueber">
+  <div class="wrap g">
+    <div>
+      <div class="eyebrow">Benvenuti</div>
+      <h2>Ein Stück Italien in Neu-Isenburg</h2>
+      <p class="lead">Bei San Remo servieren wir mit Leidenschaft, was Italien so besonders macht:
+        knusprige Pizza aus dem Ofen, hausgemachte Pasta, feine Fleisch- und Fischgerichte
+        und Klassiker aus der mediterranen Küche — frisch zubereitet, mit besten Zutaten.</p>
+      <p class="lead" style="margin-top:14px">Ob gemütlich bei uns im Restaurant, zur Abholung
+        oder bequem nach Hause geliefert — bei uns sind Sie herzlich willkommen.</p>
+      <div class="pill-row">
+        <span class="pill">🍕 Pizza & Pasta</span>
+        <span class="pill">🍷 Feine Weine</span>
+        <span class="pill">🛵 Lieferung & Abholung</span>
+        <span class="pill">👨‍🍳 Hausgemacht</span>
+      </div>
+    </div>
+    <div class="imgwrap">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=900&q=80"
+           alt="Gemütliches italienisches Restaurant-Ambiente" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="speisekarte">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">La Carta</div>
+      <h2>Unsere Speisekarte</h2>
+      <p class="lead">Eine kleine Auswahl aus unserem Angebot. Die vollständige Karte erhalten Sie
+        im Restaurant oder telefonisch.</p>
+    </div>
+    <div class="menu-grid">
+
+      <div class="cat">
+        <h3><span class="ic">🥗</span> Insalate · Salate</h3>
+        <div class="sub">Mit Balsamico- oder Joghurt-Dressing</div>
+        <div class="item"><div class="nm"><span class="no">029</span>Insalata Mista<span class="desc">Blattsalat, Tomaten, Gurken, Mais, Karotten</span></div><span class="pr">7,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">030</span>Insalata di Rucola<span class="desc">Tomaten, Rucola, Parmesan</span></div><span class="pr">7,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">031</span>Insalata San Remo<span class="desc">Thunfisch, Ei, Käse, Schinken</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">032</span>Insalata Toscana<span class="desc">Thunfisch, Zwiebeln, Oliven</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">033</span>Insalata di Tacchino<span class="desc">Putenstreifen, Champignons, Zwiebeln</span></div><span class="pr">9,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">034</span>Insalata Siciliana<span class="desc">Feta, Peperoni, Oliven</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">035</span>Insalata Capricciosa<span class="desc">Champignons, Artischocken, Oliven</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">036</span>Insalata Caprese<span class="desc">Mozzarella, Tomaten, Basilikum</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">037</span>Insalata di Mare<span class="desc">Meeresfrüchte</span></div><span class="pr">10,50 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🍕</span> Pizza</h3>
+        <div class="sub">Ø 28 cm · mit Tomatensauce und Käse</div>
+        <div class="item"><div class="nm"><span class="no">000</span>Pizzabrot<span class="desc">Knoblauch oder Oregano-Olivenöl</span></div><span class="pr">4,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">001</span>Margherita<span class="desc">Käse</span></div><span class="pr">6,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">002</span>Salami</div><span class="pr">7,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">003</span>Prosciutto<span class="desc">Schinken</span></div><span class="pr">7,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">004</span>Funghi<span class="desc">Champignons</span></div><span class="pr">7,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">005</span>Salami Picante<span class="desc">Peperoniwurst</span></div><span class="pr">7,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">006</span>Traditionale<span class="desc">Salami, Schinken</span></div><span class="pr">8,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">007</span>La Mista<span class="desc">Salami, Schinken, Champignons</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">008</span>Romana<span class="desc">Salami, Paprika, Champignons</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">009</span>Sorrentina<span class="desc">Champignons, Salami, Zwiebeln</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">010</span>alla Pizzaiola<span class="desc">Salami, Sardellen, Champignons</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">011</span>Verdura<span class="desc">Schinken, Champignons, Ei</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">012</span>Tonno<span class="desc">Thunfisch, Zwiebeln</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">013</span>Rucola<span class="desc">Tomaten, Mozzarella, Rucola</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">014</span>Classica<span class="desc">Salami, Schinken, Champignons, Peperoni</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">015</span>alla Turco<span class="desc">Sucuk, Oliven, Feta</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">016</span>Picante<span class="desc">Peperoniwurst, Zwiebeln, Peperoni</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">017</span>Capricciosa<span class="desc">Salami, Schinken, Champignons, Paprika, Artischocken</span></div><span class="pr">9,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">018</span>Quattro Stagioni<span class="desc">Salami, Schinken, Champignons, Paprika</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">019</span>Hawaii<span class="desc">Schinken, Ananas</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">020</span>Parma<span class="desc">Mozzarella, Prosciutto</span></div><span class="pr">9,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">021</span>Marinara<span class="desc">Meeresfrüchte</span></div><span class="pr">9,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">022</span>Abruzza<span class="desc">Salami, Thunfisch, Zwiebeln, Mais</span></div><span class="pr">9,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">023</span>Vegetaria<span class="desc">Frisches Gemüse</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">024</span>Speciale<span class="desc">Mozzarella, Prosciutto, Rucola, Parmesan</span></div><span class="pr">10,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">025</span>San Remo<span class="desc">Das volle Programm</span></div><span class="pr">10,00 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🍝</span> Spaghetti</h3>
+        <div class="item"><div class="nm"><span class="no">046</span>Napoli<span class="desc">Tomatensauce</span></div><span class="pr">7,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">047</span>Bolognese<span class="desc">Hackfleischsauce</span></div><span class="pr">8,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">048</span>Carbonara<span class="desc">Schinken, Sahnesauce, Ei</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">049</span>al Tonno<span class="desc">Thunfisch, Zwiebeln, Tomatensauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">050</span>al Pesto<span class="desc">Pestosauce</span></div><span class="pr">8,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">051</span>Aglio e Olio<span class="desc">Knoblauch, Olivenöl</span></div><span class="pr">8,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">052</span>Frutti di Mare<span class="desc">Meeresfrüchte</span></div><span class="pr">9,50 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🍝</span> Penne</h3>
+        <div class="item"><div class="nm">Napoli<span class="desc">Tomatensauce</span></div><span class="pr">7,50 €</span></div>
+        <div class="item"><div class="nm">Bolognese<span class="desc">Hackfleischsauce</span></div><span class="pr">8,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">059</span>alla Chef<span class="desc">Aubergine, Mozzarella, Tomatensauce</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">060</span>al Wodka<span class="desc">Speck, Zwiebeln, Tomaten-Sahnesauce, Wodka flambiert</span></div><span class="pr">9,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">061</span>al Tacchino<span class="desc">Pute, Broccoli, Tomatensauce</span></div><span class="pr">9,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">062</span>al Curry<span class="desc">Garnelen, Curry-Sahnesauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">063</span>Calabrese<span class="desc">Champignons, Knoblauch, scharfe Peperoni · scharf</span></div><span class="pr">8,50 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🍝</span> Rigatoni</h3>
+        <div class="item"><div class="nm"><span class="no">053</span>Arrabbiata<span class="desc">Knoblauch, Oliven, scharfe Peperoni, Tomatensauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">054</span>Gorgonzola<span class="desc">Gorgonzola-Sahnesauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">055</span>Quattro Formaggi<span class="desc">Vier Käsesorten</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">056</span>ai Broccoli<span class="desc">Broccoli, Tomaten-Sahnesauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">057</span>ai Spinaci<span class="desc">Schinken, Spinat, Sahnesauce</span></div><span class="pr">9,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">058</span>Veggie<span class="desc">Frisches Gemüse, Tomaten-Sahnesauce</span></div><span class="pr">9,00 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🍝</span> Weitere Pasta</h3>
+        <div class="item"><div class="nm"><span class="no">071</span>Fusilli Diavolo<span class="desc">Rosmarin, scharfe Peperoni, Tomatensauce · scharf</span></div><span class="pr">8,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">072</span>Fusilli Amatriciana<span class="desc">Speck, Zwiebeln, Tomaten-Sahnesauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">075</span>Cappelletti alla Chef<span class="desc">Champignons, Schinken, Tomaten-Sahnesauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">076</span>Cappelletti alla Casa<span class="desc">Schinken, Sahnesauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">064</span>Tortellini alla Panna<span class="desc">Schinken, Sahnesauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">065</span>Tortellini Casalinga<span class="desc">Bolognese, Sahnesauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">066</span>Tortellini ai Funghi<span class="desc">Champignons, Sahnesauce</span></div><span class="pr">8,50 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🍝</span> Pasta Fresca</h3>
+        <div class="item"><div class="nm"><span class="no">077</span>Tortelloni Aurora<span class="desc">Ricotta & Spinat, Aurorasauce</span></div><span class="pr">10,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">078</span>Tortelloni Sahne<span class="desc">Broccoli & Schinken, Sahnesauce</span></div><span class="pr">10,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">079</span>Tortelloni Gorgonzola<span class="desc">Gorgonzola-Sahnesauce</span></div><span class="pr">10,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">080</span>Tortelloni Butter-Salbei<span class="desc">Butter, Salbei</span></div><span class="pr">9,50 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🍝</span> Tagliatelle & Gnocchi</h3>
+        <div class="item"><div class="nm"><span class="no">067</span>Tagliatelle al Salmone<span class="desc">Lachs</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">068</span>Tagliatelle Alfredo<span class="desc">Schinken, Erbsen, Sahnesauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">069</span>Tagliatelle Etna<span class="desc">Schinken, Champignons, Tomatensauce</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">070</span>Pasta Mista<span class="desc">Drei Nudelsorten mit drei Saucen</span></div><span class="pr">13,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">073</span>Gnocchi Sorrentina<span class="desc">Tomatensauce, Mozzarella</span></div><span class="pr">8,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">074</span>Gnocchi Gorgonzola<span class="desc">Gorgonzola-Sahnesauce</span></div><span class="pr">9,00 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🧀</span> Al Forno · Überbacken</h3>
+        <div class="item"><div class="nm"><span class="no">081</span>Rigatoni San Remo<span class="desc">Schinken, Champignons, Erbsen, Fleischsauce</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">082</span>Gnocchi Bolognese</div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">083</span>Combinazione<span class="desc">Drei Nudelsorten in Fleischsauce</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">084</span>Tortellini Casalinga<span class="desc">Bolognese, Sahnesauce</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">085</span>Lasagne al Forno<span class="desc">Mit Käse überbacken</span></div><span class="pr">9,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">086</span>Cannelloni al Forno<span class="desc">Mit Käse überbacken</span></div><span class="pr">9,00 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🥩</span> Schnitzel vom Schwein</h3>
+        <div class="sub">Mit Beilage und Salat</div>
+        <div class="item"><div class="nm"><span class="no">087</span>Cotoletta alla Milanese<span class="desc">Wiener Schnitzel</span></div><span class="pr">11,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">088</span>alla Panna<span class="desc">Rahmschnitzel</span></div><span class="pr">12,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">089</span>alla Cacciatora<span class="desc">Jägerschnitzel</span></div><span class="pr">13,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">090</span>alla Bolognese<span class="desc">Bolognese, Schinken, überbacken</span></div><span class="pr">14,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">091</span>Hawaii<span class="desc">Schinken, Ananas, überbacken</span></div><span class="pr">14,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">092</span>Cordon Bleu<span class="desc">Mit Käse und Schinken gefüllt</span></div><span class="pr">15,00 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🍗</span> Schnitzel vom Hähnchen</h3>
+        <div class="sub">Mit Beilage und Salat</div>
+        <div class="item"><div class="nm"><span class="no">093</span>Paniertes Schnitzel<span class="desc">Hähnchenbrustfilet</span></div><span class="pr">15,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">094</span>Natur Schnitzel<span class="desc">Mit Kräuterbutter, gegrillt</span></div><span class="pr">16,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">095</span>Pfeffer Schnitzel<span class="desc">Pfefferrahmsauce</span></div><span class="pr">16,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">096</span>Hähnchenbrust<span class="desc">Jägersauce</span></div><span class="pr">16,00 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🍖</span> Scaloppina vom Kalb</h3>
+        <div class="sub">Mit Bratkartoffeln und Salat</div>
+        <div class="item"><div class="nm"><span class="no">097</span>ai Limone<span class="desc">Zitronensauce</span></div><span class="pr">17,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">098</span>Vino Bianco<span class="desc">Weißweinsauce</span></div><span class="pr">17,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">099</span>ai Funghi<span class="desc">Champignonsauce</span></div><span class="pr">17,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">100</span>Pizzaiola<span class="desc">Knoblauch, Oliven, Kapern, Tomatensauce</span></div><span class="pr">17,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">101</span>alla Romana<span class="desc">Prosciutto, Salbei, Weißweinsauce</span></div><span class="pr">17,50 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🥩</span> Rumpsteak</h3>
+        <div class="sub">Argentinisch · mit Bratkartoffeln und Salat</div>
+        <div class="item"><div class="nm"><span class="no">102</span>al Griglio<span class="desc">Kräuterbutter</span></div><span class="pr">25,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">103</span>con Cipolle<span class="desc">Zwiebeln</span></div><span class="pr">27,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">104</span>al Pepe<span class="desc">Grüne Pfeffersauce</span></div><span class="pr">27,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">105</span>ai Funghi<span class="desc">Champignonsauce</span></div><span class="pr">27,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">106</span>al Gorgonzola<span class="desc">Gorgonzolasauce</span></div><span class="pr">27,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">107</span>alla Pizzaiola<span class="desc">Oliven, Kapern, Knoblauch, Tomatensauce</span></div><span class="pr">27,00 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🥩</span> Filet vom Rind</h3>
+        <div class="sub">Mit Bratkartoffeln und Salat</div>
+        <div class="item"><div class="nm"><span class="no">108</span>al Griglio<span class="desc">Kräuterbutter</span></div><span class="pr">29,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">109</span>al Pepe<span class="desc">Grüne Pfeffersauce</span></div><span class="pr">30,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">110</span>al Gorgonzola<span class="desc">Gorgonzolasauce</span></div><span class="pr">30,00 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🐟</span> Fisch</h3>
+        <div class="sub">Mit Bratkartoffeln und Salat</div>
+        <div class="item"><div class="nm"><span class="no">111</span>Calamari Fritti<span class="desc">Frittierte Tintenfischringe</span></div><span class="pr">16,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">112</span>Calamari Provinciale<span class="desc">Gegrillt, Tomatensauce, Knoblauch, Oliven, Kapern</span></div><span class="pr">18,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">113</span>Salmone al Griglia<span class="desc">Lachs vom Grill</span></div><span class="pr">25,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">114</span>Salmone Vino Bianco<span class="desc">Lachs, Weißweinsauce</span></div><span class="pr">25,50 €</span></div>
+        <div class="item"><div class="nm"><span class="no">118</span>Scampi al Griglia<span class="desc">Scampi vom Grill</span></div><span class="pr">26,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">119</span>Scampi Provinciale<span class="desc">Tomatensauce, Knoblauch, Oliven, Kapern</span></div><span class="pr">28,00 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🍰</span> Dolci · Desserts</h3>
+        <div class="item"><div class="nm"><span class="no">124</span>Tiramisu<span class="desc">Hausgemacht</span></div><span class="pr">6,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">125</span>Tartufo Eis<span class="desc">Hausgemacht</span></div><span class="pr">6,00 €</span></div>
+        <div class="item"><div class="nm"><span class="no">126</span>Cassata Eis<span class="desc">Hausgemacht</span></div><span class="pr">6,00 €</span></div>
+      </div>
+
+      <div class="cat">
+        <h3><span class="ic">🥤</span> Getränke</h3>
+        <div class="item"><div class="nm">Coca-Cola / Cola Light<span class="desc">0,33 l</span></div><span class="pr">2,50 €</span></div>
+        <div class="item"><div class="nm">Fanta<span class="desc">0,33 l</span></div><span class="pr">2,50 €</span></div>
+        <div class="item"><div class="nm">Sprite<span class="desc">0,33 l</span></div><span class="pr">2,50 €</span></div>
+        <div class="item"><div class="nm">Bier<span class="desc">0,5 l · 5 % vol.</span></div><span class="pr">3,00 €</span></div>
+        <div class="item"><div class="nm">Chianti<span class="desc">0,75 l Flasche</span></div><span class="pr">10,00 €</span></div>
+        <div class="item"><div class="nm">Montepulciano<span class="desc">0,75 l Flasche</span></div><span class="pr">10,00 €</span></div>
+        <div class="item"><div class="nm">Pinot Grigio<span class="desc">0,75 l Flasche</span></div><span class="pr">10,00 €</span></div>
+        <div class="item"><div class="nm">Primitivo<span class="desc">Rotwein · 0,75 l Flasche</span></div><span class="pr">20,00 €</span></div>
+      </div>
+
+    </div>
+    <p class="menu-note">Alle Preise in Euro inkl. MwSt. · Änderungen und Irrtümer vorbehalten.</p>
+  </div>
+</section>
+
+<!-- HOURS + DELIVERY -->
+<section class="info" id="zeiten">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">Immer für Sie da</div>
+      <h2>Öffnungszeiten & Lieferung</h2>
+    </div>
+    <div class="info-g">
+      <div class="card">
+        <h3>🕒 Öffnungszeiten</h3>
+        <table class="hrs">
+          <tr class="closed"><td>Montag</td><td>Ruhetag</td></tr>
+          <tr><td>Dienstag – Samstag</td><td>11:30–14:15 · 17:30–22:30</td></tr>
+          <tr><td>Sonntag</td><td>11:00–14:15 · 17:00–21:00</td></tr>
+        </table>
+      </div>
+      <div class="card" id="lieferung">
+        <h3>🛵 Lieferung & Abholung</h3>
+        <ul class="deliv">
+          <li><b>Mindestbestellwert</b> 15,00 €</li>
+          <li><b>Liefergebiet</b> Neu-Isenburg</li>
+          <li><b>Gravenbruch / Zeppelinheim</b> nur vormittags</li>
+          <li><b>Abholung</b> jederzeit während der Öffnungszeiten</li>
+        </ul>
+        <a class="btn btn-gold" style="margin-top:22px" href="tel:+49610221919">☎ Telefonisch bestellen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="kontakt">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">Contatto</div>
+      <h2>So finden Sie uns</h2>
+    </div>
+    <div class="contact-g">
+      <div class="contact-card">
+        <div class="row"><span class="ic">📍</span>
+          <div><b>Adresse</b><br>Bahnhofstraße 31<br>63263 Neu-Isenburg</div></div>
+        <div class="row"><span class="ic">☎</span>
+          <div><b>Telefon</b><br><a href="tel:+49610221919">+49 6102 21919</a></div></div>
+        <div class="row"><span class="ic">✉️</span>
+          <div><b>E-Mail</b><br><a href="mailto:ciao@sanremo-neuisenburg.de">ciao@sanremo-neuisenburg.de</a></div></div>
+        <div class="row"><span class="ic">🚗</span>
+          <div><b>Anfahrt</b><br>Zentral gelegen in Neu-Isenburg, nahe Bahnhofstraße.</div></div>
+      </div>
+      <div class="map">
+        <iframe loading="lazy" title="Karte Pizzeria San Remo"
+          src="https://maps.google.com/maps?q=Bahnhofstra%C3%9Fe%2031%2C%2063263%20Neu-Isenburg&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top">San Remo <small>Neu-Isenburg</small></a>
+    <p>Bahnhofstraße 31 · 63263 Neu-Isenburg · +49 6102 21919</p>
+    <div class="foot-links">
+      <a href="#speisekarte">Speisekarte</a>
+      <a href="#zeiten">Öffnungszeiten</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="tel:+49610221919">Bestellen</a>
+    </div>
+    <p style="opacity:.6;font-size:12px">© <span id="yr"></span> Pizzeria San Remo · Benvenuti!</p>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a class="c1" href="tel:+49610221919">☎ Anrufen</a>
+  <a class="c2" href="#speisekarte">🍕 Speisekarte</a>
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  // close mobile menu on link tap
+  document.querySelectorAll('#nav a').forEach(a =>
+    a.addEventListener('click', () => document.getElementById('nav').classList.remove('open')));
+
+  // subtle nav shadow once you start scrolling
+  const hdr = document.querySelector('header');
+  const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll(); addEventListener('scroll', onScroll, {passive:true});
+
+  // gentle fade-up as sections come into view
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.center, .about .g > *, .menu-grid, .info-g, .contact-g')
+    .forEach(el => { el.classList.add('reveal'); io.observe(el); });
+</script>
+</body>
+</html>
